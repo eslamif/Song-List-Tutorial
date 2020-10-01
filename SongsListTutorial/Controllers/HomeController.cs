@@ -9,8 +9,15 @@ using SongsListTutorial.Models;
 
 namespace SongsListTutorial.Controllers {
     public class HomeController : Controller {
+        private SongContext context;
+
+        public HomeController(SongContext context) {
+            this.context = context;
+        }
+
         public IActionResult Index() {
-            return View();
+            var songs = context.Songs.OrderBy(m => m.Name).ToList();
+            return View(songs);
         }
     }
 }
