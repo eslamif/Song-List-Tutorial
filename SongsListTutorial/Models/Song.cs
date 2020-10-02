@@ -18,5 +18,9 @@ namespace SongsListTutorial.Models {
         [Required(ErrorMessage = "Please enter a rating.")]
         [Range(1, 5, ErrorMessage = "The rating range must be between 1 and 5.")]
         public int? Rating { get; set; }
+
+        [Required(ErrorMessage ="Please enter a genre.")]
+        public string GenreID { get; set; } //foreign key to Genre model
+        public Genre Genre { get; set; }
     }
 }
