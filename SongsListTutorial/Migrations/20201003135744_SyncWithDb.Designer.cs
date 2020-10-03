@@ -10,8 +10,8 @@ using SongsListTutorial.Models;
 namespace SongsListTutorial.Migrations
 {
     [DbContext(typeof(SongContext))]
-    [Migration("20201001034518_Initial")]
-    partial class Initial
+    [Migration("20201003135744_SyncWithDb")]
+    partial class SyncWithDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,41 @@ namespace SongsListTutorial.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("SongsListTutorial.Models.Genre", b =>
+                {
+                    b.Property<string>("GenreID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GenreID");
+
+                    b.ToTable("Genre");
+
+                    b.HasData(
+                        new
+                        {
+                            GenreID = "M",
+                            Name = "Metal"
+                        },
+                        new
+                        {
+                            GenreID = "R",
+                            Name = "Rap"
+                        },
+                        new
+                        {
+                            GenreID = "H",
+                            Name = "Hi Hop"
+                        },
+                        new
+                        {
+                            GenreID = "RC",
+                            Name = "Rock"
+                        });
+                });
 
             modelBuilder.Entity("SongsListTutorial.Models.Song", b =>
                 {
