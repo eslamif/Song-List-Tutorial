@@ -11,6 +11,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Year</th>
+			<th>Genre</th>
 			<th>Rating</th>
 			<th></th>
 		</tr>
@@ -21,6 +22,7 @@
 			<tr>
 				<td>@song.Name</td>
 				<td>@song.Year</td>
+				<td>@song.Genre.Name</td>
 				<td>@song.Rating</td>
 				<td>
 					<a asp-controller="Song" asp-action="Edit" asp-route-songId="@song.SongId">Edit</a>

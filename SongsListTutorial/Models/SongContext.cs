@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace SongsListTutorial.Models {
     public class SongContext : DbContext {
         public DbSet<Song> Songs { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         public SongContext(DbContextOptions<SongContext> options) : base(options) {
         }
