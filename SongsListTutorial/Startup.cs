@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SongsListTutorial.Models;
 
 namespace SongsListTutorial {
@@ -20,6 +21,13 @@ namespace SongsListTutorial {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
+            
+            // Make URLs lowercase and append slash
+            services.AddRouting(options => {
+                options.LowercaseUrls = true;
+                options.AppendTrailingSlash = true;
+            });
+
             services.AddControllersWithViews();
             services.AddDbContext<SongContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SongContext"))
@@ -35,7 +43,7 @@ namespace SongsListTutorial {
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{songId?}/{slug?}");
             });
         }
     }

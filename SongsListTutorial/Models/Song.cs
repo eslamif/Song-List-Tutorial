@@ -22,5 +22,7 @@ namespace SongsListTutorial.Models {
         [Required(ErrorMessage ="Please enter a genre.")]
         public string GenreID { get; set; } //foreign key to Genre model
         public Genre Genre { get; set; }
+
+        public string Slug => Name?.Replace(' ', '-') + '-' + Year?.ToString();
     }
 }
