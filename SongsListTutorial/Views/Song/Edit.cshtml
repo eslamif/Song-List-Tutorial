@@ -9,32 +9,40 @@
 <form asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
+    @* Name *@
     <div class="form-group">
-        @* Name *@
         <label asp-for="Name">Name</label>
         <input asp-for="Name" class="form-control" />
+    </div>
 
-        @* Year *@
+    @* Year *@
+    <div class="form-group">
         <label asp-for="Year">Year</label>
         <input asp-for="Year" class="form-control" />
+    </div>
 
-        @* Genre *@
+    @* Genre *@
+    <div class="form-group">
         <label asp-for="GenreID">Genre</label>
-        
+
         <select asp-for="GenreID" class="form-control">
             <option value="">Select Genre</option>
             @foreach (Genre genre in ViewBag.Genres) {
                 <option value="@genre.GenreID">@genre.Name</option>
             }
         </select>
+    </div>
 
-        @* Rating *@
+    @* Rating *@
+    <div class="form-group">
         <label asp-for="Rating">Rating</label>
         <input asp-for="Rating" class="form-control" />
 
         <input type="hidden" asp-for="SongId" />
+    </div>
 
-        @* CRUD buttons *@
+    @* CRUD buttons *@
+    <div class="form-group">
         <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
         <a asp-controller="Home" asp-action="Index" class="btn btn-light">Cancel</a>
     </div>
